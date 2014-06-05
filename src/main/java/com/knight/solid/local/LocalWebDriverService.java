@@ -1,23 +1,16 @@
 package com.knight.solid.local;
 
-import java.util.ArrayList;
-import java.util.List;
 import org.openqa.selenium.WebDriver;
-
+/**
+ * @author Shawn Knight (shawn.knight.work@gmail.com)
+ */
 public class LocalWebDriverService 
 {
-	private List<LocalWebDriver> localWebDrivers = new ArrayList<LocalWebDriver>();
-	
-	public LocalWebDriverService()
-	{
-		localWebDrivers.add(new LocalFirefoxWebDriver());
-		localWebDrivers.add(new LocalChromeWebDriver());
-		localWebDrivers.add(new LocalIEWebDriver());
-		localWebDrivers.add(new LocalSafariWebDriver());
-	}
+	private RegisterLocalWebDrivers registerLocalWebDrivers = new RegisterLocalWebDriversService();
+
 	public WebDriver getWebDriver(String type)
 	{
-		for (LocalWebDriver localWebDriver : localWebDrivers) 
+		for (LocalWebDriver localWebDriver : registerLocalWebDrivers.get())
 		{
 			if (localWebDriver.isWebDriverType(type))
 				return localWebDriver.getWebDriver();
@@ -26,6 +19,6 @@ public class LocalWebDriverService
 	}
 	private WebDriver getLocalDefaultWebDriver()
 	{
-		return new LocalFirefoxWebDriver().getWebDriver();
+		return registerLocalWebDrivers.getDefaultWebDriver();
 	}
 }
