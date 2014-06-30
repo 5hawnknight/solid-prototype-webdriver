@@ -16,6 +16,7 @@ public class LocalChromeWebDriver implements LocalWebDriver
 	@Override
 	public WebDriver getWebDriver()
 	{
+		System.setProperty("webdriver.chrome.driver", "/src/test/resources/chromedriver");
 		return new ChromeDriver();
 	}
 }

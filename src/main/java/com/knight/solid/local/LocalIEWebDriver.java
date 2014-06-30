@@ -16,6 +16,7 @@ public class LocalIEWebDriver implements LocalWebDriver
 	@Override
 	public WebDriver getWebDriver()
 	{
+		System.setProperty("webdriver.ie.driver","src/test/resources/IEDriverServer");
 		return new InternetExplorerDriver();
 	}
 }
